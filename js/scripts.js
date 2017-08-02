@@ -26,7 +26,7 @@ var gameState = 'notStarted',
 
 var newGameElem = document.getElementById('js-newGameElement'),
     pickElem = document.getElementById('js-playerPickElement'),
-    resultElem = document.getElementById('js-resultsTableElement');
+    resultsElem = document.getElementById('js-resultsTableElement');
 
 function setGameElements() {
     switch(gameState) {
@@ -61,5 +61,25 @@ function newGame() {
     playerNameElem.innerHTML = player.name;
     // setGamePoints(); // This function has not been created yet
   }
+}
 
+function playerPick(playerPick) {
+    console.log(playerPick);
+}
+
+function getComputerPick() {
+    var possiblePicks = ['rock', 'paper', 'scissors'];
+    return possiblePicks[Math.floor(Math.random()*3)];
+}
+
+var playerPickElem = document.getElementById('js-playerPick'),
+    computerPickElem = document.getElementById('js-computerPick'),
+    playerResultElem = document.getElementById('js-playerResult'),
+    computerResultElem = document.getElementById('js-computerResult');
+
+function playerPick(playerPick) {
+    var computerPick = getComputerPick();
+
+    playerPickElem.innerHTML = playerPick;
+    computerPickElem.innerHTML = computerPick;
 }
