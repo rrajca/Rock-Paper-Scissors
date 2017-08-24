@@ -59,7 +59,7 @@ function newGame() {
     setGameElements();
 
     playerNameElem.innerHTML = player.name;
-    // setGamePoints(); // This function has not been created yet
+    
   }
 }
 
@@ -82,4 +82,55 @@ function playerPick(playerPick) {
 
     playerPickElem.innerHTML = playerPick;
     computerPickElem.innerHTML = computerPick;
+
+    checkRoundWinner(playerPick, computerPick);
 }
+
+function checkRoundWinner(playerPick, computerPick) {
+    playerResultElem.innerHTML = computerResultElem.innerHTML = '';
+  
+    var winnerIs = 'player';
+  
+      if (playerPick == computerPick) {
+          winnerIs = 'noone'; // remis
+    } else if (
+          (computerPick == 'rock' &&  playerPick == 'scissors') ||
+          (computerPick == 'scissors' &&  playerPick == 'paper') ||
+          (computerPick == 'paper' &&  playerPick == 'rock')) {
+  
+          winnerIs = 'computer';
+    }
+  
+    if (winnerIs == 'player') {
+          playerResultElem.innerHTML = "Win!";
+          player.score++;
+    } else if (winnerIs == 'computer') {
+          computerResultElem.innerHTML = "Win!";
+          computer.score++;
+    }
+setGamePoints();
+
+}
+
+function setGamePoints() {
+    playerPointsElem.innerHTML = player.score;
+    computerPointsElem.innerHTML = computer.score;
+
+    checkGameEnd()
+}
+
+function checkGameEnd() {
+    
+    if (player.score == 10) {
+        gameState = 'ended';
+        setGameElements();
+        alert("Jako pierwszy zdobyłeś 10 punktów, wygrałeś grę!");
+    } else if (computer.score == 10) {
+        gameState = 'ended';
+        setGameElements();
+        alert("Komputer jako pierwszy zdobył 10 punktów, niestety przegrałeś.");
+    }
+}
+
+
+
